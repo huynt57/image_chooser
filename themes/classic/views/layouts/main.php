@@ -118,7 +118,7 @@
                 </nav>
             </header>
             <!-- Left side column. contains the logo and sidebar -->
-            <?php //$this->renderPartial('//layouts/sideBar') ?>
+            <?php $this->renderPartial('//layouts/sideBar') ?>
 
             <!-- Content Wrapper. Contains page content -->
             <div class="content-wrapper">

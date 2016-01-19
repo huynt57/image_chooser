@@ -23,7 +23,14 @@
         <!-- /.search form -->
         <!-- sidebar menu: : style can be found in sidebar.less -->
         <ul class="sidebar-menu">
-          
+            <?php $shops = Util::getShop(); ?>
+            <?php foreach ($shops as $key => $value): ?>
+                <li>
+                    <a href="<?php echo Yii::app()->createUrl('image/index', array('shop' => $key)) ?>">
+                        <span><?php echo $value ?></span>
+                    </a>
+                </li>
+            <?php endforeach; ?>
         </ul>
     </section>
     <!-- /.sidebar -->

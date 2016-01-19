@@ -3,14 +3,18 @@
 class ImageController extends Controller {
 
     public function actionIndex() {
+        $shop_id = Yii::app()->request->getQuery('shop');
+        $shops = Util::getShop();
+        $shop_name = $shops[$shop_id];
         $storeFolder = Yii::getPathOfAlias('webroot') . '/images/';
         $jsonName = 'data.json';
-        $path = $storeFolder . 'aothun_22/' . $jsonName;
+        $path = $storeFolder . $shop_name . '/' . $jsonName;
         $json = file_get_contents($path);
         $arr = json_decode($json, true);
         $urlImages = array();
         foreach ($arr['data'] as $item) {
-            $itemArr = array();
+            $itemArr['shop_id'] = $shop_id;
+            $itemArr['id'] = $item['id'];
             $itemArr['image_url'] = $item['images']['standard_resolution']['url'];
             $itemArr['image_url_thumbnail'] = $item['images']['thumbnail']['url'];
             $itemArr['caption'] = $item['caption']['text'];
@@ -21,6 +25,10 @@ class ImageController extends Controller {
             $urlImages[] = $itemArr;
         }
         $this->render('index', array('data' => $urlImages));
+    }
+
+    public function actionInsertImage() {
+        
     }
 
     // Uncomment the following methods and override them if needed
