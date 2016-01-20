@@ -24,7 +24,13 @@
                         <td><?php echo $item['username'] ?></td>
                         <td width="20%"><?php echo $item['user_insta_id'] ?></td>
                         <td>
-                            <a data-toggle="modal" data-target="#modal" class="label label-primary" onclick="getInfo(<?php echo $item['id'] ?>);">Cập nhật</a>
+                            <a data-image-src="<?php echo $item['image_url'] ?>" 
+                               data-image-standard="<?php echo $item['image_standard_url'] ?>"
+                               data-caption="<?php echo $item['caption'] ?>"
+                               data-username="<?php echo $item['username'] ?>"
+                               data-insta-id="<?php echo $item['user_insta_id'] ?>"
+                               data-toggle="modal" data-target="#modal" class="label label-primary update" 
+                               >Cập nhật</a>
                         </td>
                     </tr>
                 <?php endforeach; ?>
@@ -47,33 +53,88 @@
 
 <div id="modal" class="modal fade" role="dialog">
     <div class="modal-dialog">
-
         <!-- Modal content-->
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">Modal Header</h4>
+                <h4 class="modal-title">Choose Image or Not ??</h4>
             </div>
             <div class="modal-body">
-                <p>Some text in the modal.</p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            </div>
-        </div>
+                <div class="row">
+                    <div class="col-md-7">
+                        <img src="" id="image_src">
+                    </div>
+                    <div class="col-md-5">
+                        <form id="save-form">
+                            <div class="form-group">
+                                <label for="caption">Caption</label>
+                                <textarea class="form-control" id="caption" rows="12" name="caption"></textarea>
+                                <input type="hidden" name="image_standard_url" id="image_standard_url">
+                                <input type="hidden" name="username" id="username">
+                                <input type="hidden" name="user_insta_id" id="user_insta_id">
 
+                            </div>
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox" name="choose" id="choose" value="yes"> Chọn ảnh này
+                                </label>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" id="save-modal">Save</button>
+                </div>
+            </div>
+
+
+        </div>
     </div>
-</div>
-<script>
-    $(function () {
-        //$("#example1").DataTable();
-        $('#example1').DataTable({
-            "paging": true,
-            "lengthChange": false,
-            "searching": false,
-            "ordering": true,
-            "info": true,
-            "autoWidth": false
+    <script>
+        $(document).on('click', '.update', function () {
+            var image_src = $(this).attr('data-image-src');
+            var image_standard_url = $(this).attr('data-image-standard');
+            var caption = $(this).attr('data-caption');
+            var username = $(this).attr('data-username');
+            var user_insta_id = $(this).attr('data-insta-id');
+            $('#image_src').attr('src', image_src);
+            $('#caption').val(caption);
+            $('#image_standard_url').val(image_standard_url);
+            $('#username').val(username);
+            $('#user_insta_id').val(user_insta_id);
         });
-    });
-</script>
+
+        $(document).on('click', '#save-modal', function () {
+            var form = $('#save-form');
+            var data = form.serialize();
+            console.log(data);
+            $.ajax({
+                beforeSend: function (xhr) {
+                    $('#modal').addClass('blur-loading');
+                },
+                type: 'POST',
+                url: '<?php echo Yii::app()->createUrl('image/insert') ?>',
+                data: data,
+                dataType: 'json',
+                success: function (response)
+                {
+
+                    displayMessage(1);
+                },
+                error: function (response)
+                {
+                    displayMessage(2);
+                },
+                complete: function (response)
+                {
+                    $('#modal').removeClass('blur-loading');
+                }
+            });
+        });
+
+
+        $(function () {
+            $("#example1").DataTable();
+        });
+    </script>

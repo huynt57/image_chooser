@@ -4,7 +4,7 @@
         <!-- Sidebar user panel -->
         <div class="user-panel">
             <div class="pull-left image">
-                <img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/logo.png" class="img-circle" alt="User Image">
+                <img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/avatar3.png" class="img-circle" alt="User Image">
             </div>
             <div class="pull-left info">
                 <p>Quản trị viên</p>
