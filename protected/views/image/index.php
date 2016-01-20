@@ -103,6 +103,7 @@
             $('#image_standard_url').val(image_standard_url);
             $('#username').val(username);
             $('#user_insta_id').val(user_insta_id);
+            $('#choose').removeAttr('checked');
         });
 
         $(document).on('click', '#save-modal', function () {
