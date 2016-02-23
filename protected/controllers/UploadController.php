@@ -5,6 +5,7 @@ class UploadController extends Controller {
     public function actionIndex() {
         $this->render('index');
     }
+    
 
     public function actionAddImage() {
         $request = Yii::app()->request;
