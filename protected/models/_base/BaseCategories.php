@@ -15,7 +15,6 @@
  * @property string $description
  * @property integer $created_at
  * @property integer $updated_at
- * @property integer $type
  *
  */
 abstract class BaseCategories extends GxActiveRecord {
@@ -38,11 +37,11 @@ abstract class BaseCategories extends GxActiveRecord {
 
 	public function rules() {
 		return array(
-			array('status, created_at, updated_at, type', 'numerical', 'integerOnly'=>true),
+			array('status, created_at, updated_at', 'numerical', 'integerOnly'=>true),
 			array('cat_name', 'length', 'max'=>255),
 			array('description', 'safe'),
-			array('cat_name, status, description, created_at, updated_at, type', 'default', 'setOnEmpty' => true, 'value' => null),
-			array('cat_id, cat_name, status, description, created_at, updated_at, type', 'safe', 'on'=>'search'),
+			array('cat_name, status, description, created_at, updated_at', 'default', 'setOnEmpty' => true, 'value' => null),
+			array('cat_id, cat_name, status, description, created_at, updated_at', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -64,7 +63,6 @@ abstract class BaseCategories extends GxActiveRecord {
 			'description' => Yii::t('app', 'Description'),
 			'created_at' => Yii::t('app', 'Created At'),
 			'updated_at' => Yii::t('app', 'Updated At'),
-			'type' => Yii::t('app', 'Type'),
 		);
 	}
 
@@ -77,7 +75,6 @@ abstract class BaseCategories extends GxActiveRecord {
 		$criteria->compare('description', $this->description, true);
 		$criteria->compare('created_at', $this->created_at);
 		$criteria->compare('updated_at', $this->updated_at);
-		$criteria->compare('type', $this->type);
 
 		return new CActiveDataProvider($this, array(
 			'criteria' => $criteria,

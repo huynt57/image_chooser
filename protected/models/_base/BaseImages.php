@@ -50,6 +50,7 @@ abstract class BaseImages extends GxActiveRecord {
 
 	public function relations() {
 		return array(
+                    'posts'=>array(self::BELONGS_TO, 'Posts', 'post_id'),
 		);
 	}
 

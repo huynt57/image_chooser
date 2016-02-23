@@ -51,6 +51,7 @@ abstract class BasePosts extends GxActiveRecord {
 
 	public function relations() {
 		return array(
+                    'images'=>array(self::HAS_MANY, 'Images', 'img_id'),
 		);
 	}
 

@@ -2,13 +2,6 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-            <file>file:/D:/xampp/htdocs/fashionImage/themes/classic/views/layouts/sideBar.php</file>
-            <file>file:/D:/xampp/htdocs/fashionImage/protected/config/main.php</file>
-            <file>file:/D:/xampp/htdocs/fashionImage/protected/controllers/ImageController.php</file>
-            <file>file:/D:/xampp/htdocs/fashionImage/protected/views/image/index.php</file>
-            <file>file:/D:/xampp/htdocs/fashionImage/themes/classic/views/layouts/main.php</file>
-            <file>file:/D:/xampp/htdocs/fashionImage/protected/views/image/update.php</file>
-        </group>
+        <group/>
     </open-files>
 </project-private>
