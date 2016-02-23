@@ -3,9 +3,11 @@
 class UploadController extends Controller {
 
     public function actionIndex() {
-        $this->render('index');
+        $male_cats = Categories::model()->getMaleCategory();
+        $female_cats = Categories::model()->getFemaleCategory();
+        $other_cats = Categories::model()->getOtherCategory();
+        $this->render('index', array('male_cats' => $male_cats, 'female_cats' => $female_cats, 'other_cats' => $other_cats));
     }
-    
 
     public function actionAddImage() {
         $request = Yii::app()->request;
